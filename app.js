@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardDeck = makeDeck();
     const grid = document.querySelector('.grid');
     const resultDisplay = document.querySelector('#result');
+    const triesDisplay = document.querySelector('#tries');
     var cardsChosen = [];
     var cardsChosenId = [];
     var cardsWon = [];
+    let tries = 0;
 
 
     //Create the board
@@ -23,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check for Matches
     function checkForMatch() {
         var cards = document.querySelectorAll('img');
+        tries ++;
         console.log(cardsChosen[0], cardsChosen[1], cardsChosen);
         if (cardsChosen[0] === cardsChosen[1]) {
             alert("You found a match!");
@@ -38,11 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear out the chosen cards now that you are finished evaluating them
         cardsChosen = [];
         cardsChosenId = [];
+
+        // Display how many matches so far
         resultDisplay.textContent = cardsWon.length;
-        console.log("Evaluating end of game: ", cardsWon.length, cardDeck.length/2);
+        triesDisplay.textContent = tries;
         if (cardsWon.length === cardDeck.length/2) {
             // Game is over
-            resultDisplay.textContent = "Congratulations! You won!"
+            resultDisplay.textContent = "You won!"
         }
     }
 
@@ -62,12 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function makeDeck() {
         randomDeck = [];
         for (i=0; i<12; i++) {
-            name = Math.random().toString(36).substring(7); //  Grabbed from StackExchange
+            // Sets name using random string generator grabbed from StackExchange
+            name = Math.random().toString(36).substring(7);
             img = "https://robohash.org/" + name;
             randomDeck[i] = { name, img } // Assign a random card
             i++;
             randomDeck[i] = { name, img } // Assign a matching card
         }
+        // Not sure yet how this random generator works
         randomDeck.sort(() => 0.5 - Math.random());
         console.log(randomDeck);
         return randomDeck;
