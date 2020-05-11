@@ -17,19 +17,28 @@ body {
     font-style: normal;
     font-weight: normal;
     src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
-                    
 }
 
-header {
+h1 {
+    font-family: 'SEGA LOGO FONT';  
+    font-weight: 200;
+    color: #0ccac4;
+    text-align: center;
+}
+
+footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .grid {
+    display: flex;
     flex-wrap: wrap;
-    height: 500px;
-    width: 650px;
+    /* height: 800px; */
+    width: 975px;
+    justify-content: center;
+    text-align: center;
 }
 
 img {
@@ -41,9 +50,3 @@ img {
 }
 
 img:hover { transform: scale(1.1); }
-
-h1 {
-    font-family: 'SEGA LOGO FONT';  
-    font-weight: 200;
-    color: #0ccac4;
-}
